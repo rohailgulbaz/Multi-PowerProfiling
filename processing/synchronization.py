@@ -7,7 +7,7 @@ import pandas as pd
 # ============================================================
 
 INPUT_DIR = Path("data")
-OUTPUT_DIR = Path("output")
+OUTPUT_DIR = Path("data")
 
 RESULTS_FILE = INPUT_DIR / "edge_results.csv" # Or server_results.csv
 USAGE_FILE = INPUT_DIR / "edge_usage.csv" # Or server_usage.csv 
