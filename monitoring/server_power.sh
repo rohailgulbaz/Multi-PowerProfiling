@@ -9,4 +9,4 @@ while true; do
     echo "$(date +%Y-%m-%d),$(date +%H:%M:%S),$POWER"
     sleep 1
 done
-' | tee -a ~/server_power_readings.csv
+' | tee -a ~/data/server_power_readings.csv
