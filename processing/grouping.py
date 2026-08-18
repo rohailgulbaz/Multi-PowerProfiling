@@ -1,5 +1,6 @@
 from pathlib import Path
 import re
+import os
 import pandas as pd
 
 
@@ -7,10 +8,10 @@ import pandas as pd
 # Configuration
 # ============================================================
 
-INPUT_FILE = Path("data/synchronized_data.csv")
-OUTPUT_DIR = Path("data/cpu_groups")
+INPUT_FILE = Path("data/edge_synchronized_data.csv") # OR server_synchronized_data.csv
+OUTPUT_DIR = Path("data")
 
-TOTAL_CORES = 32
+TOTAL_CORES = os.cpu_count()
 
 CORE_LEVELS = {
     25: int(TOTAL_CORES * 0.25),
@@ -83,7 +84,7 @@ baseline_df.drop(
     columns=["datetime", "cpu_cores"],
     errors="ignore"
 ).to_csv(
-    OUTPUT_DIR / "baseline.csv",
+    OUTPUT_DIR / "edge_baseline.csv", # OR server_baseline.csv
     index=False
 )
 
@@ -157,7 +158,7 @@ for level, core_count in CORE_LEVELS.items():
         by=["cpu_utilization", "datetime"]
     )
 
-    output_file = OUTPUT_DIR / f"{level}percent_cores.csv"
+    output_file = OUTPUT_DIR / f"edge_{level}percent_cores.csv" # OR server_{level}percent_cores.csv
 
     subset.drop(
         columns=["datetime", "cpu_cores"],
@@ -170,3 +171,4 @@ for level, core_count in CORE_LEVELS.items():
     print(
         f"{output_file} done: {len(subset)} records"
     )
+
