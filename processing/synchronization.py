@@ -13,7 +13,7 @@ RESULTS_FILE = INPUT_DIR / "edge_results.csv" # Or server_results.csv
 USAGE_FILE = INPUT_DIR / "edge_usage.csv" # Or server_usage.csv 
 POWER_FILE = INPUT_DIR / "edge_power_readings.csv" # Or server_power_readings.csv
 
-OUTPUT_FILE = OUTPUT_DIR / "synchronized_data.csv"
+OUTPUT_FILE = OUTPUT_DIR / "edge_synchronized_data.csv" # OR server_synchronized_data.csv
 
 
 # ============================================================
@@ -194,3 +194,21 @@ final_df = final_df[
         "power_watts",
     ]
 ]
+
+
+# ============================================================
+# Save output
+# ============================================================
+
+OUTPUT_DIR.mkdir(
+    parents=True,
+    exist_ok=True
+)
+
+final_df.to_csv(
+    OUTPUT_FILE,
+    index=False
+)
+
+print(f"Synchronized dataset saved to: {OUTPUT_FILE}")
+
