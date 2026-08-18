@@ -1,4 +1,4 @@
-systemd-inhibit --what=sleep --why="Server Power Monitoring" \
+systemd-inhibit --what="sleep" --why="Power Monitoring" \
 ssh <REMOTE_USER>@<REMOTE_HOST> '
 echo "date,time,power_watts"
 
@@ -9,4 +9,4 @@ while true; do
     echo "$(date +%Y-%m-%d),$(date +%H:%M:%S),$POWER"
     sleep 1
 done
-' | tee -a server_power_readings.csv
+' | tee -a ~/server_power_readings.csv
